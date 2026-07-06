@@ -1,6 +1,8 @@
 # HPC
 This is a repository to document my work during summer training at the High Performance Computing Center.
 
-Week 1:
+To start using any of the python files, please make sure to install the required packages using:
 
-Day 1: Tasks 1 & 2
+```python
+pip install -r requirements.txt
+```
