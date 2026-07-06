@@ -6,3 +6,20 @@ To start using any of the python files, please make sure to install the required
 ```python
 pip install -r requirements.txt
 ```
+
+Then run any Task*.py file with python.
+
+
+## Docker
+
+Build Task 1 from Week 1 Day 2 with Docker:
+
+```
+docker build -t hpc-w1d2-t1 .
+```
+
+Run the container:
+
+```
+docker run -p 9000:6000 --rm --env-file .env hpc-w1d2-t1
+```
