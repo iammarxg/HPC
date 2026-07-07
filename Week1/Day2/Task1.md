@@ -1,213 +1,131 @@
 # Introduction
 
-To begin with, the below prompts were used with the `gemini-3.1-flash-lite` LLM, and with a max output token size of `10000000`, and with a fixed temperature of `0.5`.
+To begin with, the below prompts were used with the `gemini-3.1-flash-lite` LLM, and with a max output token size of `1000`, and with a fixed temperature of `0.5`.
 
-And the analysis was done by ChatGPT 5.5, with some modifications and guidance done by me.
+The analysis was done by ChatGPT 5.5, with some modifications and guidance done by me.
 
 ## Task
 
-**Chosen Task:** Write a Bash script to back up a folder.
+Explain what Artificial Intelligence is to a beginner.
 
 ---
 
 # Prompts
 
-## 1. Basic Prompt
+## 1. Basic Prompt (Task only)
 
-> Write a bash script to backup a folder.
-
----
-
-## 2. Improved Prompt
-
-> Write a bash script that takes a source folder as input and creates a compressed tar backup of it in a destination folder, appending the current date to the filename.
+> Explain what Artificial Intelligence is in no more than 120 words.
 
 ---
 
-## 3. Detailed Prompt
+## 2. Improved Prompt (Role + Task)
 
-> You are a DevOps engineer creating an automated backup solution. Write a bash script that accepts three command-line arguments: a source directory, a destination directory, and the maximum number of old backups to retain. Include error handling to check if the source exists before running, and add comments explaining the logic for deleting older backups.
-
----
-
-## 4. Creative Prompt
-
-> Act as a strict system administrator designing a secure compliance backup utility. Write a bash script that creates a rotating tar backup of a source folder to a destination folder, keeping a specified number of old backups. The script must also generate a SHA-256 checksum of the newly created archive for integrity verification and append a timestamped record of the operation, including the checksum and backup size, to a log file.
+> You are an experienced technology teacher. Explain what Artificial Intelligence is in no more than 120 words.
 
 ---
 
-## 5. With Clear Constraints Prompt
+## 3. Detailed Prompt (Role + Task + Context)
 
-> Write a bash script that backs up a source directory to a destination, manages a retention policy for old backups, generates a SHA-256 checksum, and writes to a log file. You must adhere to the following constraints: The script must accept exactly three arguments (source, destination, retention limit). Use only standard GNU utilities. If the source directory is missing, the script must exit immediately with code 1. Limit your text explanation outside the code block to exactly three bullet points.
-
----
-
-# Prompt Evaluation
-
-| Prompt Type | Evaluation | Comments |
-|-------------|------------|----------|
-| **Basic** | ✅ Excellent | Very simple with almost no guidance, exactly what a basic prompt should be. |
-| **Improved** | ✅ Excellent | Adds inputs, desired behavior, and output requirements while remaining concise. |
-| **Detailed** | ✅ Excellent | Introduces a role, detailed requirements, command-line arguments, comments, and error handling. |
-| **Creative** | ✅ Excellent | Gives the AI a specific persona and requests production-style features such as logging and integrity verification. |
-| **With Clear Constraints** | ✅ Good | Clearly defines restrictions regarding arguments, utilities, exit codes, and output formatting. |
+> You are an experienced technology teacher. Explain what Artificial Intelligence is to a high school student with no background in programming or computer science. Use simple language and relatable examples. Keep your explanation within 120 words.
 
 ---
 
-# Output Comparison
+## 4. Creative Prompt (Role + Task + Context + Format)
 
-## 1. Basic Output
-
-**Prompt Compliance:** ⭐⭐⭐⭐⭐ (5/5)
-
-### Strengths
-
-- Successfully creates a compressed backup.
-- Uses `tar`.
-- Includes timestamped filenames.
-- Easy to understand.
-- Suitable for beginners.
-
-### Weaknesses
-
-- Uses hardcoded source and destination paths.
-- No command-line arguments.
-- Limited error handling.
+> You are an experienced technology teacher. Explain what Artificial Intelligence is to a high school student with no background in programming or computer science. Use simple language, relatable examples, and an everyday analogy. Format your response with a one-sentence definition, three key points, one real-world example, and a short conclusion. Limit your response to 120 words.
 
 ---
 
-## 2. Improved Output
+## 5. With Clear Constraints Prompt (Role + Task + Context + Format + Constraints)
 
-**Prompt Compliance:** ⭐⭐⭐⭐⭐ (5/5)
-
-### Strengths
-
-- Accepts source and destination as arguments.
-- Automatically creates the destination directory.
-- Includes timestamped filenames.
-- Checks that the source directory exists.
-- Produces a reusable script.
-
-### Weaknesses
-
-- No retention policy.
-- No backup integrity verification.
+> You are an experienced technology teacher. Explain what Artificial Intelligence is to a high school student with no background in programming or computer science. Use simple language, relatable examples, and an everyday analogy. Format your response with a one-sentence definition, three key points, one real-world example, and a short conclusion. Constraints: Maximum of 120 words. Avoid technical jargon. Use a friendly and encouraging tone. Do not use bullet points outside the required format. Ensure the explanation is easy for a complete beginner to understand.
 
 ---
 
-## 3. Detailed Output
-
-**Prompt Compliance:** ⭐⭐⭐⭐⭐ (5/5)
-
-### Strengths
-
-- Fully follows the requested DevOps role.
-- Accepts three command-line arguments.
-- Validates user input.
-- Checks that the source directory exists.
-- Implements backup retention.
-- Includes explanatory comments.
-- Provides usage instructions.
-- Well organized and practical.
-
-### Weaknesses
-
-- Uses `ls` for file handling, which is acceptable here but not always considered the safest scripting practice.
-
----
-
-## 4. Creative Output
-
-**Prompt Compliance:** ⭐⭐⭐⭐☆ (4.5/5)
-
-### Strengths
-
-- Successfully adopts the requested system administrator role.
-- Creates rotating backups.
-- Generates SHA-256 checksums.
-- Records operations in a log file.
-- Includes security recommendations.
-- Uses strict Bash options (`errexit`, `nounset`, `pipefail`).
-
-### Weaknesses
-
-- Uses hardcoded configuration values instead of command-line arguments.
-- Slightly exceeds the requested functionality by adding deployment guidance.
-
----
-
-## 5. Clear Constraints Output
-
-**Prompt Compliance:** ⭐⭐☆☆☆ (2/5)
-
-### Strengths
-
-- Accepts three arguments.
-- Produces exactly three bullet points outside the code block.
-- Validates the source directory.
-- Logs backup operations.
-
-### Weaknesses
-
-- Uses `rsync` instead of creating a compressed tar archive.
-- Interprets the retention limit as days instead of the number of backups.
-- Does not strictly follow the requested backup strategy.
-- Does not fully satisfy the "standard GNU utilities" requirement.
-
----
-
-# Overall Comparison
-
-| Prompt | Output Quality | Followed Instructions | Complexity | Practicality |
-|---------|---------------|----------------------|------------|--------------|
-| Basic | Good | Excellent | Low | Good |
-| Improved | Very Good | Excellent | Medium | Very Good |
-| Detailed | Excellent | Excellent | High | Excellent |
-| Creative | Excellent | Very Good | High | Excellent |
-| Clear Constraints | Fair | Poor | Medium | Good |
-
----
-
-# Best Prompt
-
-## Winner: Detailed Prompt
+# Best Prompt: Prompt 5 – With Clear Constraints
 
 ### Why?
 
-The **Detailed Prompt** produced the strongest overall result because it provided enough context, structure, and guidance without being overly restrictive.
+It produced the clearest and most beginner-friendly explanation while following the requested structure and tone. The added constraints resulted in a concise, well-organized response with simple language, a relatable analogy, a real-world example, and an encouraging conclusion, making it the easiest for a high school student to understand.
 
-Compared with the earlier prompts, it clearly specified:
+# Comparisons & Output Quality
 
-- The AI's role (DevOps engineer)
-- The required functionality
-- The expected inputs
-- Error handling
-- Documentation requirements
+## Prompt 1 – Basic (Task only)
 
-As a result, the generated script included:
+### Strengths
+- ✅ Stayed within the 120-word limit (109 words).
+- ✅ Provided a factually accurate explanation of AI.
 
-- Command-line argument validation
-- Source directory verification
-- Automatic destination directory creation
-- Timestamped backups
-- Backup retention management
-- Well-written comments
-- Clear usage instructions
-
-The response closely matched every requirement in the prompt while remaining practical and easy to understand.
-
-Although the **Creative Prompt** generated a more production-ready script with checksum generation, logging, and security enhancements, it hardcoded configuration values instead of accepting command-line arguments, making it slightly less aligned with the requested task.
-
-The **Basic** and **Improved** prompts produced functional scripts but lacked many advanced features found in the Detailed version.
-
-The **Clear Constraints** prompt produced the weakest result because the AI failed to follow several explicit instructions, including creating a tar archive and implementing the requested retention policy correctly.
+### Weaknesses
+- ❌ Too technical for beginners.
+- ❌ Focused on defining AI rather than teaching the concept.
+- ❌ No examples or analogies to improve understanding.
+- ❌ Generic response due to the lack of role, audience, and formatting instructions.
 
 ---
 
-# Final Conclusion
+## Prompt 2 – Improved (Role + Task)
 
-This exercise demonstrates that prompt quality has a direct impact on AI-generated results.
+### Strengths
+- ✅ Stayed within the 120-word limit (109 words).
+- ✅ Followed the assigned teacher role.
+- ✅ More conversational and engaging than Prompt 1.
+- ✅ Included an analogy and practical examples to improve understanding.
 
-As additional context, roles, instructions, formatting requirements, and constraints were added, the generated scripts became increasingly accurate, maintainable, and feature-rich.
+### Weaknesses
+- ❌ No specific target audience, so the explanation was still somewhat general.
+- ❌ No required structure or format, making the response less organized.
+- ❌ Used more words explaining examples than simplifying the core concept.
 
-The **Detailed Prompt** achieved the best balance between specificity and flexibility, producing the most complete and accurate solution while fully satisfying the requested requirements.
+> **Result:** A noticeable improvement over Prompt 1, but still lacked direction.
+
+---
+
+## Prompt 3 – Detailed (Role + Task + Context)
+
+### Strengths
+- ✅ Stayed within the 120-word limit (115 words).
+- ✅ Successfully tailored the explanation for a high school student with no programming background.
+- ✅ Used simple language and relatable examples.
+- ✅ Balanced simplicity with factual accuracy.
+- ✅ The Netflix recommendation example made the concept easy to relate to.
+
+### Weaknesses
+- ❌ No required output structure, so the response appeared as one paragraph.
+- ❌ Key ideas were less visually organized, making them harder to scan quickly.
+
+> **Result:** Much more beginner-friendly because the added context guided the model toward the intended audience.
+
+---
+
+## Prompt 4 – Creative (Role + Task + Context + Format)
+
+### Strengths
+- ✅ Stayed within the 120-word limit (114 words).
+- ✅ Followed the assigned role and target audience.
+- ✅ Followed the requested format (definition, key points, example, conclusion).
+- ✅ Included an everyday analogy and a real-world example.
+- ✅ The structured layout significantly improved readability.
+
+### Weaknesses
+- ❌ Still allowed some flexibility in wording and tone because no explicit constraints were given.
+- ❌ Did not explicitly instruct the model to avoid technical jargon or maintain a friendly tone.
+
+> **Result:** Easier to read and understand than Prompt 3 due to its clear organization.
+
+---
+
+## Prompt 5 – With Clear Constraints
+
+### Strengths
+- ✅ Stayed within the 120-word limit (115 words).
+- ✅ Followed every instruction: role, task, context, format, and constraints.
+- ✅ Used simple language, a friendly tone, and avoided unnecessary jargon.
+- ✅ Maintained the requested structure throughout the response.
+- ✅ Balanced clarity, accuracy, readability, and conciseness.
+- ✅ Produced the most polished and beginner-friendly explanation.
+
+### Weaknesses
+- ⚠️ The numbered list slightly differed from the requested "three key points," but it still communicated the information effectively.
+
+> **Result:** The strongest overall response because it most closely followed the prompt while producing the clearest, most organized, and most accessible explanation.

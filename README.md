@@ -21,5 +21,5 @@ docker build -t hpc-w1d2-t1 .
 Run the container:
 
 ```
-docker run -p 9000:6000 --rm --env-file .env hpc-w1d2-t1
+docker run -it -p 9000:6000 --rm --env-file .env hpc-w1d2-t1
 ```
