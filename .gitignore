@@ -219,3 +219,6 @@ __marimo__/
 
 # macOS
 .DS_Store
+
+# Repo specific files/folders
+Week1/Day4\&5/output

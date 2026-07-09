@@ -1,0 +1,12 @@
+services:
+  summarizer-app:
+    image: docker.io/ammarx4/hpc-w1d4-t1:latest
+    container_name: gemini-summarizer
+    stdin_open: true  # Keeps stdin open for interactive input
+    tty: true         # Allocates a pseudo-TTY
+    ports:
+      - "6000:6000"
+    volumes:
+      - ./output:/data
+    environment:
+      - GEMINI_API_KEY=your_api_key_here
