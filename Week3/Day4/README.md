@@ -18,7 +18,7 @@ A web application that converts source code from one programming language to ano
 
 | File | Purpose |
 |---|---|
-| [`spec.md`](./spec.md) | Full functional, API, data-model, security, and deployment specification. Source of truth for behavior. |
+| [`spec.md`](../Day3/spec.md) | Full functional, API, data-model, security, and deployment specification. Source of truth for behavior. |
 | [`system-prompt.md`](./system-prompt.md) | Guidance for AI coding assistants continuing this project. |
 
 Read `spec.md` before making functional changes — it is the authoritative reference for this project's behavior.
