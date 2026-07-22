@@ -25,7 +25,17 @@ Read `spec.md` before making functional changes — it is the authoritative refe
 
 ## Tech Stack
 
-Not yet finalized. The specification is stack-agnostic by design; implementation choices (backend framework, database, frontend framework) are left to whoever builds it, subject to the constraints in `spec.md` (containerized deployment, multi-arch Docker images, the documented API contract and data model). This section should be updated once those choices are made.
+| Layer | Choice |
+|---|---|
+| Language | TypeScript (frontend & backend) |
+| Frontend | Next.js (React) — public conversion UI, Settings, and the admin dashboard |
+| Backend | Node.js — Next.js API routes, or a separate Express/Fastify service |
+| Database | PostgreSQL |
+| ORM | Prisma or Drizzle |
+| Background jobs | BullMQ + Redis (or equivalent cron-triggered worker) — powers the 24h OpenRouter model sync (§4.2) and the Tier 2 verification pass (§6.9) |
+| Syntax highlighting | [Shiki](https://shiki.style) |
+
+A single TypeScript codebase keeps the frontend, backend, and admin dashboard in sync with the API contract and data model in `spec.md`, and Shiki (the recommended highlighter, §5) is JS-native with no cross-language bridge required.
 
 ## Getting Started
 
@@ -64,7 +74,3 @@ docker buildx build --platform linux/amd64,linux/arm64 -t <image>:<tag> --push .
 ## Contributing
 
 This project follows the behavior defined in `spec.md`. Changes that alter user-facing behavior, limits, or the data model should be reflected there first.
-
-## License
-
-*(Add a license here — e.g. MIT, or "All rights reserved" if this stays private.)*
